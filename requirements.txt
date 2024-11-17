@@ -1,5 +1,6 @@
 streamlit==1.16.0
 altair==4.2.0
+gradio==3.42.0
 pandas
 numpy
 scikit-learn
