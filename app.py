@@ -1,61 +1,44 @@
-import streamlit as st
-import streamlit.components.v1 as components
+import gradio as gr
 
-# --- Main App UI ---
-def main():
-    st.title("Unified ML Platform")
-
-    # Sidebar for model selection
-    model = st.sidebar.selectbox(
-        "Select a model to use:",
-        [
-            "Digit Recognizer",
-            "House Price Prediction",
-            "NLP Disaster Tweets",
-            "Spaceship Titanic Prediction",
-            "Titanic Prediction"
-        ]
-    )
-
-    # Based on the selected model, embed the corresponding web app
-    if model == "Digit Recognizer":
-        digit_recognizer()
-    elif model == "House Price Prediction":
-        house_price_prediction()
-    elif model == "NLP Disaster Tweets":
-        nlp_disaster_tweets()
-    elif model == "Spaceship Titanic Prediction":
-        spaceship_titanic_prediction()
-    elif model == "Titanic Prediction":
-        titanic_prediction()
-
-# --- Model-Specific Functions ---
+# --- Model Functions ---
 
 def digit_recognizer():
-    st.header("Digit Recognizer")
-    # Embed the existing web app for digit recognizer
-    components.iframe("https://digitrecogniser-zzcjt35a9vgsmk5p235szk.streamlit.app/", height=800)
+    return "Visit the [Digit Recognizer Web App](https://digitrecogniser-zzcjt35a9vgsmk5p235szk.streamlit.app/)."
 
 def house_price_prediction():
-    st.header("House Price Prediction")
-    # Embed the existing web app for house price prediction
-    components.iframe("https://9yx5jqt7gemca4xn8mncwk.streamlit.app/", height=800)
+    return "Visit the [House Price Prediction Web App](https://9yx5jqt7gemca4xn8mncwk.streamlit.app/)."
 
 def nlp_disaster_tweets():
-    st.header("NLP Disaster Tweets")
-    # Embed the existing web app for NLP disaster tweets prediction
-    components.iframe("https://nncsjh9jxmwixpfstqtcszbp.streamlit.app/", height=800)
+    return "Visit the [NLP Disaster Tweets Web App](https://nncsjh9jxmwixpfstqtcszbp.streamlit.app/)."
 
 def spaceship_titanic_prediction():
-    st.header("Spaceship Titanic Prediction")
-    # Embed the existing web app for spaceship titanic prediction
-    components.iframe("https://hrbwzuxseql4zdrvflh5y6.streamlit.app/", height=800)
+    return "Visit the [Spaceship Titanic Prediction Web App](https://hrbwzuxseql4zdrvflh5y6.streamlit.app/)."
 
 def titanic_prediction():
-    st.header("Titanic Prediction")
-    # Embed the existing web app for Titanic prediction
-    components.iframe("https://5krauxjee9gubhqhszvaam.streamlit.app/", height=800)
+    return "Visit the [Titanic Prediction Web App](https://5krauxjee9gubhqhszvaam.streamlit.app/)."
 
-# --- Run the App ---
+# --- Unified Gradio Interface ---
+with gr.Blocks() as demo:
+    gr.Markdown("# Unified ML Platform")
+    gr.Markdown("### Choose a model to explore:")
+    
+    with gr.Row():
+        digit_btn = gr.Button("Digit Recognizer")
+        house_btn = gr.Button("House Price Prediction")
+        nlp_btn = gr.Button("NLP Disaster Tweets")
+        spaceship_btn = gr.Button("Spaceship Titanic Prediction")
+        titanic_btn = gr.Button("Titanic Prediction")
+
+    # Output display
+    output = gr.Markdown()
+
+    # Button click events
+    digit_btn.click(digit_recognizer, inputs=None, outputs=output)
+    house_btn.click(house_price_prediction, inputs=None, outputs=output)
+    nlp_btn.click(nlp_disaster_tweets, inputs=None, outputs=output)
+    spaceship_btn.click(spaceship_titanic_prediction, inputs=None, outputs=output)
+    titanic_btn.click(titanic_prediction, inputs=None, outputs=output)
+
+# --- Launch the App ---
 if __name__ == "__main__":
-    main()
+    demo.launch()
