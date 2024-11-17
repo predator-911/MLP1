@@ -1,9 +1,8 @@
-pip install --upgrade pip
 streamlit==1.16.0
 pandas==1.5.3
 numpy==1.23.3
-tensorflow>=2.11.0
+tensorflow==2.10.0
 scikit-learn==1.1.2
 joblib==1.2.0
 Pillow==8.4.0
-setuptools>=59.5.0
+setuptools==59.5.0
